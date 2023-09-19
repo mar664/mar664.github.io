@@ -4,41 +4,41 @@
     712: function (e, t) {
       var i,
         n,
-        s,
         o,
+        s,
         r,
-        a,
         l,
+        a,
         d =
           (this && this.__awaiter) ||
           function (e, t, i, n) {
-            return new (i || (i = Promise))(function (s, o) {
+            return new (i || (i = Promise))(function (o, s) {
               function r(e) {
                 try {
-                  l(n.next(e));
+                  a(n.next(e));
                 } catch (e) {
-                  o(e);
-                }
-              }
-              function a(e) {
-                try {
-                  l(n.throw(e));
-                } catch (e) {
-                  o(e);
+                  s(e);
                 }
               }
               function l(e) {
+                try {
+                  a(n.throw(e));
+                } catch (e) {
+                  s(e);
+                }
+              }
+              function a(e) {
                 var t;
                 e.done
-                  ? s(e.value)
+                  ? o(e.value)
                   : ((t = e.value),
                     t instanceof i
                       ? t
                       : new i(function (e) {
                           e(t);
-                        })).then(r, a);
+                        })).then(r, l);
               }
-              l((n = n.apply(e, t || [])).next());
+              a((n = n.apply(e, t || [])).next());
             });
           },
         c =
@@ -153,13 +153,13 @@
             (e.Right = "Right"),
             (e.Top = "Top"),
             (e.Bottom = "Bottom");
-        })(s || (s = {})),
+        })(o || (o = {})),
         (function (e) {
           (e.click = "click"),
             (e.focus = "focus"),
             (e.keyup = "keyup"),
             (e.animationend = "animationend");
-        })(o || (o = {})),
+        })(s || (s = {})),
         (function (e) {
           (e.Fade = "Fade"),
             (e["Slide From Right"] = "Slide From Right"),
@@ -173,10 +173,10 @@
             (e["Slide To Left"] = "Slide To Left"),
             (e["Slide To Top"] = "Slide To Top"),
             (e["Slide To Bottom"] = "Slide To Bottom");
-        })(a || (a = {})),
+        })(l || (l = {})),
         (function (e) {
           (e.Element = "Element"), (e.Class = "Class");
-        })(l || (l = {})),
+        })(a || (a = {})),
         (function () {
           class e {
             constructor(e) {
@@ -198,50 +198,64 @@
                   );
               if (void 0 === t)
                 throw new Error("Open duration must not be undefined");
-              this.openDuration = t;
+              (this.openDuration = t),
+                console.log("openDuration", this.openDuration);
               const i = this.getStrValue(
                 e.DATA_ATTRIBUTE_OPEN_EFFECT,
                 e.DEFAULT_OPEN_EFFECT
               );
               if (!i || !h.Enums.isEnumValue(i, r))
                 throw new Error("Open effect type not valid");
-              this.openEffectType = i;
+              (this.openEffectType = i),
+                console.log("openEffectType", this.openEffectType);
               const n = this.getStrValue(
                 e.DATA_ATTRIBUTE_OPEN_TRIGGER_TYPE,
                 e.DEFAULT_TRIGGER_TYPE
               );
-              if (!n || !h.Enums.isEnumValue(n, l))
+              if (!n || !h.Enums.isEnumValue(n, a))
                 throw new Error("Open trigger type not valid");
-              this.openTriggerType = n;
-              const s = this.getStrValue(e.DATA_ATTRIBUTE_OPEN_TRIGGER, void 0);
-              if (!s) throw new Error("Open trigger not defined");
-              this.openTrigger = s;
-              const o = h.isReduced()
+              (this.openTriggerType = n),
+                console.log("openTriggerType", this.openTriggerType);
+              const o = this.getStrValue(e.DATA_ATTRIBUTE_OPEN_TRIGGER, void 0);
+              if (!o) throw new Error("Open trigger not defined");
+              (this.openTrigger = o),
+                console.log("openTrigger", this.openTrigger);
+              const s = h.isReduced()
                 ? 0
                 : this.getIntValue(
                     e.DATA_ATTRIBUTE_CLOSE_DURATION,
                     e.DEFAULT_DURATION
                   );
-              if (void 0 === o) throw new Error("Close duration not valid");
-              this.closeDuration = o;
+              if (void 0 === s) throw new Error("Close duration not valid");
+              (this.closeDuration = s),
+                console.log("closeDuration", this.closeDuration);
               const d = this.getStrValue(
                 e.DATA_ATTRIBUTE_CLOSE_EFFECT,
                 e.DEFAULT_CLOSE_EFFECT
               );
-              if (!d || !h.Enums.isEnumValue(d, a))
+              if (!d || !h.Enums.isEnumValue(d, l))
                 throw new Error("Close effect type not valid");
-              this.closeEffectType = d;
+              (this.closeEffectType = d),
+                console.log("closeEffectType", this.closeEffectType);
               const c = this.getStrValue(
                 e.DATA_ATTRIBUTE_CLOSE_TRIGGER_TYPE,
                 e.DEFAULT_TRIGGER_TYPE
               );
-              if (!(!c || (c && h.Enums.isEnumValue(c, l))))
+              if (!c || !h.Enums.isEnumValue(c, a))
                 throw new Error("Secondary close trigger type invalid");
-              (this.closeEffectType = d),
+              (this.secondaryCloseTriggerType = c),
+                console.log(
+                  "secondaryCloseTriggerType",
+                  this.secondaryCloseTriggerType
+                ),
                 (this.secondaryCloseTrigger = this.getStrValue(
                   e.DATA_ATTRIBUTE_CLOSE_TRIGGER,
                   void 0
-                ));
+                )),
+                console.log(
+                  "secondaryCloseTrigger",
+                  this.secondaryCloseTrigger
+                );
               const u = this.getBoolValue(
                 e.DATA_ATTRIBUTE_CLOSE_ON_CLICK_OVERLAY,
                 e.DEFAULT_CLOSE_ON_CLICK_OVERLAY
@@ -318,7 +332,7 @@
               (this.openButton = i),
                 this.addEventListener(
                   this.openButton,
-                  o.click,
+                  s.click,
                   this.handleOpenModal.bind(this)
                 ),
                 (this.focusAfterClosed = this.openButton);
@@ -332,7 +346,7 @@
                 this.closeButton &&
                   this.addEventListener(
                     this.closeButton,
-                    o.click,
+                    s.click,
                     this.closeModalHandler
                   ),
                 this.secondaryCloseTriggerType && this.secondaryCloseTrigger)
@@ -356,7 +370,7 @@
                   this.secondaryCloseButton &&
                     this.addEventListener(
                       this.secondaryCloseButton,
-                      o.click,
+                      s.click,
                       this.closeModalHandler
                     );
               }
@@ -440,11 +454,11 @@
             removeEventListener(e, t, i, n = !1) {
               e.removeEventListener(t, i, n),
                 (this.eventListeners = this.eventListeners.filter(
-                  (s) =>
-                    s.element !== e ||
-                    s.type !== t ||
-                    s.handler !== i ||
-                    s.capture !== n
+                  (o) =>
+                    o.element !== e ||
+                    o.type !== t ||
+                    o.handler !== i ||
+                    o.capture !== n
                 ));
             }
             setEscapeEventListener() {
@@ -454,11 +468,11 @@
                   null !== (e = this.escapeHandler) && void 0 !== e
                     ? e
                     : this.handleEscapeEvent.bind(this)),
-                this.addEventListener(document, o.keyup, this.escapeHandler);
+                this.addEventListener(document, s.keyup, this.escapeHandler);
             }
             removeEscapeEventListener() {
               console.log("removing escape event listener"),
-                this.removeEventListener(document, o.keyup, this.escapeHandler);
+                this.removeEventListener(document, s.keyup, this.escapeHandler);
             }
             setFocusTrapEventListener() {
               var e;
@@ -469,7 +483,7 @@
                     : this.handleTrapFocus.bind(this)),
                 this.addEventListener(
                   document,
-                  o.focus,
+                  s.focus,
                   this.focusEventHandler,
                   !0
                 );
@@ -478,7 +492,7 @@
               console.log("removing focus event listener"),
                 this.removeEventListener(
                   document,
-                  o.focus,
+                  s.focus,
                   this.focusEventHandler,
                   !0
                 );
@@ -493,7 +507,7 @@
                       : this.handleCloseModal.bind(this)),
                   this.addEventListener(
                     this.overlay,
-                    o.click,
+                    s.click,
                     this.closeModalHandler
                   ));
             }
@@ -502,7 +516,7 @@
                 this.closeOnClickOverlay &&
                   this.removeEventListener(
                     this.overlay,
-                    o.click,
+                    s.click,
                     this.closeModalHandler
                   );
             }
@@ -600,7 +614,7 @@
               );
             }
             getAnimateSlideOut(e) {
-              const t = `margin${this.slideInDir}`;
+              const t = `margin${this.slideOutDir}`;
               e.style[t] = "0";
               const i = [{}, {}];
               return (
@@ -704,9 +718,9 @@
             (e.DATA_ATTRIBUTE_CLOSE_DURATION = `${e.DATA_ATTRIBUTE_CLOSE}-duration`),
             (e.DATA_ATTRIBUTE_CLOSE_ON_CLICK_OVERLAY = `${e.DATA_ATTRIBUTE_BASE}-close-on-click-overlay`),
             (e.DEFAULT_DURATION = 1e3),
-            (e.DEFAULT_TRIGGER_TYPE = l.Element),
+            (e.DEFAULT_TRIGGER_TYPE = a.Element),
             (e.DEFAULT_OPEN_EFFECT = r.Fade),
-            (e.DEFAULT_CLOSE_EFFECT = a.Fade),
+            (e.DEFAULT_CLOSE_EFFECT = l.Fade),
             (e.DEFAULT_CLOSE_ON_CLICK_OVERLAY = !0),
             "loading" === document.readyState
               ? document.addEventListener("DOMContentLoaded", function () {
