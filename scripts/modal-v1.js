@@ -54,7 +54,7 @@
             );
           };
       Object.defineProperty(t, "__esModule", { value: !0 });
-      class u {
+      class h {
         static uuidv4() {
           return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
             /[xy]/g,
@@ -70,7 +70,7 @@
           );
         }
       }
-      (u.Enums = class {
+      (h.Enums = class {
         static isEnumValue(e, t) {
           return "string" == typeof e && Object.values(t).includes(e);
         }
@@ -83,15 +83,15 @@
           return n;
         }
       }),
-        (u.CSS = class {
+        (h.CSS = class {
           static insertCSSRule(e) {
             const t = window.document.styleSheets[0];
             t.insertRule(e, t.cssRules.length);
           }
         }),
-        (u.Events =
+        (h.Events =
           (c((i = class {}), "Events"), (i.Key = { ESC: "Escape" }), i)),
-        (u.DOM =
+        (h.DOM =
           (c(
             (n = class {
               static instanceOf(e, t) {
@@ -100,7 +100,7 @@
               static focusFirstDescendant(e) {
                 for (let t = 0; t < e.childNodes.length; t++) {
                   const i = e.childNodes[t];
-                  if (u.DOM.attemptFocus(i) || u.DOM.focusFirstDescendant(i))
+                  if (h.DOM.attemptFocus(i) || h.DOM.focusFirstDescendant(i))
                     return !0;
                 }
                 return !1;
@@ -108,19 +108,19 @@
               static focusLastDescendant(e) {
                 for (let t = e.childNodes.length - 1; t >= 0; t--) {
                   const i = e.childNodes[t];
-                  if (u.DOM.attemptFocus(i) || u.DOM.focusLastDescendant(i))
+                  if (h.DOM.attemptFocus(i) || h.DOM.focusLastDescendant(i))
                     return !0;
                 }
                 return !1;
               }
               static attemptFocus(e) {
-                if (!u.DOM.isFocusable(e)) return !1;
-                u.DOM.IgnoreUtilFocusChanges = !0;
+                if (!h.DOM.isFocusable(e)) return !1;
+                h.DOM.IgnoreUtilFocusChanges = !0;
                 try {
                   e.focus();
                 } catch (e) {}
                 return (
-                  (u.DOM.IgnoreUtilFocusChanges = !1),
+                  (h.DOM.IgnoreUtilFocusChanges = !1),
                   document.activeElement === e
                 );
               }
@@ -147,7 +147,7 @@
             }
           }),
           n)),
-        (t.default = u),
+        (t.default = h),
         (function (e) {
           (e.Left = "Left"),
             (e.Right = "Right"),
@@ -184,13 +184,13 @@
                 (this.eventListeners = []),
                 (this.modalContainer = e),
                 (this.id =
-                  this.modalContainer.getAttribute("id") || u.uuidv4()),
+                  this.modalContainer.getAttribute("id") || h.uuidv4()),
                 (this.modalContainer.id = this.id),
                 this.parseDataAttributesValues(),
                 this.setup();
             }
             parseDataAttributesValues() {
-              const t = u.isReduced()
+              const t = h.isReduced()
                 ? 0
                 : this.getIntValue(
                     e.DATA_ATTRIBUTE_OPEN_DURATION,
@@ -203,20 +203,20 @@
                 e.DATA_ATTRIBUTE_OPEN_EFFECT,
                 e.DEFAULT_OPEN_EFFECT
               );
-              if (!i || !u.Enums.isEnumValue(i, r))
+              if (!i || !h.Enums.isEnumValue(i, r))
                 throw new Error("Open effect type not valid");
               this.openEffectType = i;
               const n = this.getStrValue(
                 e.DATA_ATTRIBUTE_OPEN_TRIGGER_TYPE,
                 e.DEFAULT_TRIGGER_TYPE
               );
-              if (!n || !u.Enums.isEnumValue(n, l))
+              if (!n || !h.Enums.isEnumValue(n, l))
                 throw new Error("Open trigger type not valid");
               this.openTriggerType = n;
               const s = this.getStrValue(e.DATA_ATTRIBUTE_OPEN_TRIGGER, void 0);
               if (!s) throw new Error("Open trigger not defined");
               this.openTrigger = s;
-              const o = u.isReduced()
+              const o = h.isReduced()
                 ? 0
                 : this.getIntValue(
                     e.DATA_ATTRIBUTE_CLOSE_DURATION,
@@ -228,27 +228,27 @@
                 e.DATA_ATTRIBUTE_CLOSE_EFFECT,
                 e.DEFAULT_CLOSE_EFFECT
               );
-              if (!d || !u.Enums.isEnumValue(d, a))
+              if (!d || !h.Enums.isEnumValue(d, a))
                 throw new Error("Close effect type not valid");
               this.closeEffectType = d;
               const c = this.getStrValue(
                 e.DATA_ATTRIBUTE_CLOSE_TRIGGER_TYPE,
                 e.DEFAULT_TRIGGER_TYPE
               );
-              if (!(!c || (c && u.Enums.isEnumValue(c, l))))
+              if (!(!c || (c && h.Enums.isEnumValue(c, l))))
                 throw new Error("Secondary close trigger type invalid");
               (this.closeEffectType = d),
                 (this.secondaryCloseTrigger = this.getStrValue(
                   e.DATA_ATTRIBUTE_CLOSE_TRIGGER,
                   void 0
                 ));
-              const h = this.getBoolValue(
+              const u = this.getBoolValue(
                 e.DATA_ATTRIBUTE_CLOSE_ON_CLICK_OVERLAY,
                 e.DEFAULT_CLOSE_ON_CLICK_OVERLAY
               );
-              if (void 0 === h)
+              if (void 0 === u)
                 throw new Error("Close on click overlay must be defined");
-              this.closeOnClickOverlay = h;
+              this.closeOnClickOverlay = u;
             }
             setupFocusTrapDivs() {
               const e = document.createElement("div");
@@ -369,7 +369,7 @@
               console.log("Open animation ended"),
                 this.focusFirst
                   ? this.focusFirst.focus()
-                  : u.DOM.focusFirstDescendant(this.modal),
+                  : h.DOM.focusFirstDescendant(this.modal),
                 this.setFocusTrapEventListener(),
                 this.setEscapeEventListener(),
                 this.setClickOverlayEventListener();
@@ -388,8 +388,10 @@
                   this.removeFocusTrapEventListener(),
                   this.removeEscapeEventListener(),
                   this.removeClickOverlayEventListener();
-                const e = this.overlay.animate(...this.getAnimateFadeOut()),
-                  t = this.modal.animate(...this.getAnimateClose());
+                const e = this.overlay.animate(
+                    ...this.getAnimateFadeOut(this.overlay)
+                  ),
+                  t = this.modal.animate(...this.getAnimateClose(this.overlay));
                 return (
                   yield e.finished,
                   e.commitStyles(),
@@ -404,10 +406,11 @@
             }
             handleOpenModal() {
               return d(this, void 0, void 0, function* () {
-                (document.body.style.overflow = "hidden"),
-                  (this.isVisible = !0);
-                const e = this.overlay.animate(...this.getAnimateFadeIn()),
-                  t = this.modal.animate(...this.getAnimateOpen());
+                document.body.style.overflow = "hidden";
+                const e = this.overlay.animate(
+                    ...this.getAnimateFadeIn(this.overlay)
+                  ),
+                  t = this.modal.animate(...this.getAnimateOpen(this.modal));
                 (this.modalContainer.style.display = "flex"),
                   yield e.finished,
                   e.commitStyles(),
@@ -420,7 +423,7 @@
             }
             handleEscapeEvent(e) {
               return d(this, void 0, void 0, function* () {
-                e.key === u.Events.Key.ESC &&
+                e.key === h.Events.Key.ESC &&
                   (yield this.handleCloseModal()) &&
                   e.stopPropagation();
               });
@@ -505,9 +508,9 @@
             }
             handleTrapFocus(e) {
               if (e.target == this.preTrapNode)
-                u.DOM.focusLastDescendant(this.modal);
+                h.DOM.focusLastDescendant(this.modal);
               else if (e.target == this.postTrapNode)
-                u.DOM.focusFirstDescendant(this.modal);
+                h.DOM.focusFirstDescendant(this.modal);
               else if (!this.modal.contains(e.target))
                 throw new Error("Focus trap not working correctly");
             }
@@ -522,65 +525,42 @@
               const i = this.modalContainer.getAttribute(e);
               return (!i || "false" !== i) && t;
             }
-            getAnimateOpen() {
+            getAnimateOpen(e) {
               switch (this.openEffectType.split(" ")[0]) {
                 case "Fade":
-                  return this.getAnimateFadeIn();
+                  return this.getAnimateFadeIn(e);
                 case "Slide":
                   return (
                     (this.slideInDir = this.openEffectType
                       .split(" ")
                       .slice(-1)[0]),
-                    this.getAnimateSlideIn()
+                    this.getAnimateSlideIn(e)
                   );
                 default:
                   throw new Error("open effect type not found");
               }
             }
-            getAnimateClose() {
+            getAnimateClose(e) {
               switch (this.closeEffectType.split(" ")[0]) {
                 case "Fade":
-                  return this.getAnimateFadeOut();
+                  return this.getAnimateFadeOut(e);
                 case "Slide":
                   return (
                     (this.slideOutDir = this.closeEffectType
                       .split(" ")
                       .slice(-1)[0]),
-                    this.getAnimateSlideOut()
+                    this.getAnimateSlideOut(e)
                   );
                 default:
                   throw new Error("close effect type not found");
               }
             }
-            getAnimateFadeIn() {
-              return [
-                [{ opacity: 0 }, { opacity: 1, display: "block" }],
-                {
-                  duration: this.openDuration,
-                  iterations: 1,
-                  fill: "forwards",
-                },
-              ];
-            }
-            getAnimateFadeOut() {
-              return [
-                [{ opacity: 1 }, { opacity: 0 }],
-                {
-                  duration: this.closeDuration,
-                  iterations: 1,
-                  fill: "forwards",
-                },
-              ];
-            }
-            getAnimateSlideIn() {
-              const e = `margin${this.slideInDir}`,
-                t = [{}, {}];
+            getAnimateFadeIn(e) {
               return (
-                (t[0][e] = "-300%"),
-                (t[1][e] = "0"),
-                (t[1].display = "block"),
+                (e.style.opacity = "0"),
+                (e.style.display = "block"),
                 [
-                  t,
+                  [{ opacity: 0 }, { opacity: 1 }],
                   {
                     duration: this.openDuration,
                     iterations: 1,
@@ -589,14 +569,45 @@
                 ]
               );
             }
-            getAnimateSlideOut() {
-              const e = `margin${this.slideOutDir}`,
-                t = [{}, {}];
+            getAnimateFadeOut(e) {
               return (
-                (t[0][e] = "0"),
-                (t[1][e] = "-300%"),
+                (e.style.opacity = "1"),
                 [
-                  t,
+                  [{ opacity: 1 }, { opacity: 0 }],
+                  {
+                    duration: this.closeDuration,
+                    iterations: 1,
+                    fill: "forwards",
+                  },
+                ]
+              );
+            }
+            getAnimateSlideIn(e) {
+              const t = `margin${this.slideInDir}`;
+              (e.style[t] = "-300%"), (e.style.display = "block");
+              const i = [{}, {}];
+              return (
+                (i[0][t] = "-300%"),
+                (i[1][t] = "0"),
+                [
+                  i,
+                  {
+                    duration: this.openDuration,
+                    iterations: 1,
+                    fill: "forwards",
+                  },
+                ]
+              );
+            }
+            getAnimateSlideOut(e) {
+              const t = `margin${this.slideInDir}`;
+              e.style[t] = "0";
+              const i = [{}, {}];
+              return (
+                (i[0][t] = "0"),
+                (i[1][t] = "-300%"),
+                [
+                  i,
                   {
                     duration: this.closeDuration,
                     iterations: 1,
@@ -659,7 +670,7 @@
                   for (const n of e)
                     "attributes" === n.type &&
                       "class" === n.attributeName &&
-                      u.DOM.instanceOf(n.target, "HTMLHtmlElement") &&
+                      h.DOM.instanceOf(n.target, "HTMLHtmlElement") &&
                       n.target.classList.contains("wf-design-mode") &&
                       (console.log("disconnecting webflow preview observer"),
                       t.disconnect(),
